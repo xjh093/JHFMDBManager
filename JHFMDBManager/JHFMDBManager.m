@@ -66,10 +66,11 @@ static FMDatabase *_db;
     return YES;
 }
 
-+ (BOOL)insertRecord:(NSString *)sql,...{
++ (BOOL)insertRecord:(NSString *)sql arguments:(NSArray *)arguments{
     if (_db == nil) return NO;
     
-    BOOL flag = [_db executeUpdate:sql];
+    BOOL flag = [_db executeUpdate:sql withArgumentsInArray:arguments];
+    
     if (flag){
         NSLog(@"插入数据成功!");
     }else{
@@ -78,10 +79,11 @@ static FMDatabase *_db;
     return flag;
 }
 
-+ (BOOL)deleteRecord:(NSString *)sql,...{
++ (BOOL)deleteRecord:(NSString *)sql arguments:(NSArray *)arguments{
     if (_db == nil) return NO;
     
-    BOOL flag = [_db executeUpdate:sql];
+    BOOL flag = [_db executeUpdate:sql withArgumentsInArray:arguments];
+    
     if (flag){
         NSLog(@"删除数据成功!");
     }else{
@@ -90,10 +92,11 @@ static FMDatabase *_db;
     return flag;
 }
 
-+ (BOOL)updateRecord:(NSString *)sql,...{
++ (BOOL)updateRecord:(NSString *)sql arguments:(NSArray *)arguments{
     if (_db == nil) return NO;
     
-    BOOL flag = [_db executeUpdate:sql];
+    BOOL flag = [_db executeUpdate:sql withArgumentsInArray:arguments];
+    
     if (flag){
         NSLog(@"更新数据成功!");
     }else{
@@ -102,8 +105,8 @@ static FMDatabase *_db;
     return flag;
 }
 
-+ (FMResultSet *)queryRecord:(NSString *)sql,...{
-    return [_db executeQuery:sql];
++ (FMResultSet *)queryRecord:(NSString *)sql arguments:(NSArray *)arguments{
+    return [_db executeQuery:sql withArgumentsInArray:arguments];
 }
 
 @end
