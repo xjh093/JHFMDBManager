@@ -30,7 +30,7 @@
 
 + (BOOL)setup{
     if ([super setup]) {
-        BOOL flag = [super updateRecord:@"CREATE TABLE IF NOT EXISTS t_xuncha (xid integer PRIMARY KEY AUTOINCREMENT, json text, images text, time text)"];
+        BOOL flag = [super updateRecord:@"CREATE TABLE IF NOT EXISTS t_xuncha (xid integer PRIMARY KEY AUTOINCREMENT, json text, images text, time text)" arguments:nil];
         if (flag) NSLog(@"创建表 t_xuncha 成功!");
         else NSLog(@"创建表 t_xuncha 失败!");
         return YES;
@@ -40,20 +40,20 @@
 
 + (BOOL)insertRecord:(NSArray *)array{
     // json , images , time
-    return [super insertRecord:@"INSERT INTO t_xuncha (json, images, time) VALUES (?,?,?)",array[0],array[1],array[2]];
+    return [super insertRecord:@"INSERT INTO t_xuncha (json, images, time) VALUES (?,?,?)" arguments:array];
 }
 
 + (BOOL)deleteRecord:(NSString *)keyWord{
-    return [super deleteRecord:@"DELETE FROM t_xuncha WHERE time = ?",keyWord];
+    return [super deleteRecord:@"DELETE FROM t_xuncha WHERE time = ?" arguments:@[keyWord]];
 }
 
 + (BOOL)updateRecord:(NSArray *)array{
     // json , images , time
-    return [super updateRecord:@"UPDATE t_xuncha SET json = ? , images = ? WHERE time = ?",array[0],array[1],array[2]];
+    return [super updateRecord:@"UPDATE t_xuncha SET json = ? , images = ? WHERE time = ?" arguments:array];
 }
 
 + (NSArray *)queryRecord{
-    FMResultSet *result = [super queryRecord:@"select * from t_xuncha"];
+    FMResultSet *result = [super queryRecord:@"select * from t_xuncha" arguments:nil];
     NSMutableArray *marr = @[].mutableCopy;
     while ([result next]) {
         NSString *json   = [result stringForColumn:@"json"];
