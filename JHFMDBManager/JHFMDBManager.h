@@ -34,10 +34,10 @@
 
 + (BOOL)setup;
 
-+ (BOOL)insertRecord:(NSString *)sql,...;
-+ (BOOL)deleteRecord:(NSString *)sql,...;
-+ (BOOL)updateRecord:(NSString *)sql,...;
-+ (FMResultSet *)queryRecord:(NSString *)sql,...;
++ (BOOL)insertRecord:(NSString *)sql arguments:(NSArray *)arguments;
++ (BOOL)deleteRecord:(NSString *)sql arguments:(NSArray *)arguments;
++ (BOOL)updateRecord:(NSString *)sql arguments:(NSArray *)arguments;
++ (FMResultSet *)queryRecord:(NSString *)sql arguments:(NSArray *)arguments;
 
 @end
 
